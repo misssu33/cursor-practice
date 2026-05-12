@@ -135,7 +135,16 @@ def build_app() -> Application:
     init_db()
     _run_migrations()
 
-    app = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
+    # AsyncIOScheduler 는 이벤트 루프 안에서 start() 해야 하므로 post_init 으로 미룬다.
+    async def _post_init(app: Application) -> None:
+        start_scheduler()
+
+    app = (
+        Application.builder()
+        .token(TELEGRAM_BOT_TOKEN)
+        .post_init(_post_init)
+        .build()
+    )
 
     # 기본
     app.add_handler(CommandHandler("start", cmd_start))
@@ -220,8 +229,7 @@ def build_app() -> Application:
 
     app.add_handler(CommandHandler("cancel", cmd_cancel))
 
-    # 스케줄러
-    start_scheduler()
+    # 스케줄러는 위의 post_init 훅에서 이벤트 루프 안에서 시작한다.
 
     return app
 
