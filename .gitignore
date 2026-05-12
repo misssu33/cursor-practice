@@ -39,3 +39,7 @@ Thumbs.db
 
 # clasp (Apps Script 도구)
 .clasp.json
+
+# Git 백업 (서브 저장소 흡수 시 임시 보관)
+.git.bak/
+**/.git.bak/
