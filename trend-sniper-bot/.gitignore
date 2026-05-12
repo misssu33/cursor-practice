@@ -1,0 +1,31 @@
+# 환경 변수 / 비밀
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# 가상환경
+venv/
+.venv/
+env/
+
+# DB / 로그
+*.db
+*.sqlite
+*.sqlite3
+*.log
+logs/
+
+# OS / 에디터
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp

@@ -2,8 +2,16 @@
 
 import os
 import sys
+from pathlib import Path
 
 import requests
+
+# 부모 디렉터리(cursor-practice/)의 .env를 자동 로드. python-dotenv가 없으면 환경 변수만 사용.
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+except ImportError:
+    pass
 
 # 환경 변수 우선, 없으면 아래 상수(로컬 전용·커밋 비권장)
 ENV_BOT_TOKEN = "TELEGRAM_BOT_TOKEN"
