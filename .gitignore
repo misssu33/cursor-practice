@@ -1,0 +1,41 @@
+# 환경 변수
+.env
+.env.local
+.env.*.local
+
+# 민감 정보
+*.key
+*.pem
+secrets.json
+credentials.json
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# 로그
+*.log
+logs/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Python 가상환경
+venv/
+.venv/
+env/
+
+# OS 파일
+.DS_Store
+Thumbs.db
+
+# 에디터
+.vscode/
+.idea/
+*.swp
+
+# clasp (Apps Script 도구)
+.clasp.json
