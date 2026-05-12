@@ -27,7 +27,10 @@ class TestStorage(unittest.TestCase):
                 del sys.modules[mod]
 
         from storage import init_db, get_session  # noqa: WPS433
-        from storage.models import Project, TrendScan, CoreSheetRow, FactCheck  # noqa: WPS433
+        from storage.models import (  # noqa: WPS433
+            Project, TrendScan, CoreSheetRow, FactCheck,
+            ChannelContent, InstagramImage,
+        )
         from storage import db as storage_db  # noqa: WPS433
 
         self.init_db = init_db
@@ -36,6 +39,8 @@ class TestStorage(unittest.TestCase):
         self.TrendScan = TrendScan
         self.CoreSheetRow = CoreSheetRow
         self.FactCheck = FactCheck
+        self.ChannelContent = ChannelContent
+        self.InstagramImage = InstagramImage
         self._engine = storage_db._engine
         init_db()
 
@@ -88,6 +93,51 @@ class TestStorage(unittest.TestCase):
             self.assertIsNotNone(proj.core_sheet)
             self.assertEqual(len(proj.factchecks), 1)
             self.assertEqual(proj.factchecks[0].verdict, "TRUE")
+
+    def test_channel_content_with_instagram_images(self):
+        """Part 3 추가 모델 — ChannelContent + InstagramImage 관계."""
+        with self.get_session() as session:
+            p = self.Project(
+                user_id=2, topic="t2", main_keyword="k2",
+                sub_keywords=[], goal="g", tone="친근", publish_at="2025-12-01",
+            )
+            session.add(p)
+            session.flush()
+
+            c = self.ChannelContent(
+                project_id=p.id, channel="instagram",
+                body="slide script + caption",
+                hashtags=["k2", "트렌드"],
+                seo_score=82, char_count=512, status="ready",
+            )
+            session.add(c)
+            session.flush()
+            cid = c.id
+
+            # 삽입 순서를 일부러 뒤섞어 쿼리 정렬을 검증한다.
+            for seq in (3, 1, 2):
+                session.add(self.InstagramImage(
+                    content_id=cid, seq=seq,
+                    local_path=f"./data/instagram_images/x{seq}.jpg",
+                    cloud_url=f"https://res.cloudinary.com/test/x{seq}.jpg",
+                    upload_mode="group" if seq > 1 else "single",
+                ))
+
+        with self.get_session() as session:
+            content = session.get(self.ChannelContent, cid)
+            self.assertIsNotNone(content)
+            assert content is not None
+            self.assertEqual(content.channel, "instagram")
+            self.assertEqual(len(content.instagram_images), 3)
+            # 모델 relationship 에는 order_by 가 없으므로 쿼리에서 정렬해 검증한다.
+            images = (
+                session.query(self.InstagramImage)
+                .filter_by(content_id=cid)
+                .order_by(self.InstagramImage.seq)
+                .all()
+            )
+            self.assertEqual([img.seq for img in images], [1, 2, 3])
+            self.assertEqual([img.upload_mode for img in images], ["single", "group", "group"])
 
 
 if __name__ == "__main__":

@@ -20,6 +20,8 @@ _engine = create_engine(
     future=True,
     connect_args={"check_same_thread": False},
 )
+# Part 4 마이그레이션이 `from storage.db import engine` 를 호출하므로 공개 별칭 노출.
+engine = _engine
 _SessionFactory = sessionmaker(bind=_engine, autoflush=False, expire_on_commit=False, future=True)
 
 

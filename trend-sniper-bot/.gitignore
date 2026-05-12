@@ -16,12 +16,16 @@ venv/
 .venv/
 env/
 
-# DB / 로그
+# DB / 로그 / 봇 런타임 산출물
 *.db
 *.sqlite
 *.sqlite3
 *.log
 logs/
+# Part 4 exporter 산출물 + DB/로그 디렉터리 통째로 무시.
+data/
+# Blogger OAuth 클라이언트 시크릿
+secrets/
 
 # OS / 에디터
 .DS_Store

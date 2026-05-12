@@ -4,12 +4,15 @@ from __future__ import annotations
 
 WELCOME = (
     "🎯 *트렌드 스나이퍼 봇 v3.0*\n\n"
-    "트렌드 키워드 → 자료 수집 → 코어시트 → 팩트체크 → 채널 발행을 자동화합니다.\n\n"
+    "트렌드 키워드 → 자료 수집 → 코어시트 → 팩트체크 → 5채널 작성 → 자동 발행까지 한 봇에서.\n\n"
     "주요 명령\n"
-    "• /new — 새 프로젝트 시작 (양식 입력)\n"
+    "• /new — 새 프로젝트 시작\n"
     "• /core — 코어시트 입력\n"
-    "• /fc_yes /fc_no — 팩트체크 시작/건너뛰기\n"
-    "• /history /resume /export — 프로젝트 이력 (Part 4)\n"
+    "• /fc_yes /fc_no — 팩트체크 진행/건너뛰기\n"
+    "• /ch_* /ch_done — 5채널 작성\n"
+    "• /publish /schedule — 즉시·예약 발행\n"
+    "• /connect blogger|threads|instagram — OAuth\n"
+    "• /history /resume /export — 프로젝트 관리\n"
     "• /help — 도움말 / /cancel — 진행 취소"
 )
 
@@ -19,10 +22,18 @@ HELP = (
     "• /new — 인테이크 양식 발송\n"
     "• /core — 코어시트 양식 발송\n"
     "• /fc_yes /fc_no — 팩트체크 진행/건너뛰기\n\n"
-    "✍️ 채널 작성 (Part 3 예정)\n"
-    "• /ch_linkedin /ch_naver /ch_adsense /ch_instagram /ch_threads /ch_done\n\n"
-    "🗂 관리 (Part 4 예정)\n"
-    "• /history /resume /export /connect\n\n"
+    "✍️ 채널 작성\n"
+    "• /ch_linkedin /ch_naver /ch_adsense /ch_instagram /ch_threads\n"
+    "• /ch_done — 작성 마무리\n"
+    "• /ig_done /ig_cancel — 인스타 이미지 업로드 마무리\n\n"
+    "🚀 발행\n"
+    "• /publish — ready 상태 채널 즉시 발행 (auto/semi/manual 자동 분기)\n"
+    "• /schedule — 발행시점 5분 전 알림 + 정시 자동 발행 등록\n"
+    "• /connect <provider> — Blogger(OAuth) / Threads / Instagram 토큰 연결\n\n"
+    "🗂 관리\n"
+    "• /history — 최근 20개 프로젝트 발행 통계\n"
+    "• /resume — 중단된 프로젝트 이어하기\n"
+    "• /export [project_id] — 채널별 파일 다운로드\n\n"
     "🛑 /cancel — 진행 중인 대화 취소"
 )
 

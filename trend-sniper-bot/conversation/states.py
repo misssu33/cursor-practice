@@ -17,3 +17,5 @@ class State(IntEnum):
     FACTCHECK_VERDICT = auto()
     CHANNEL_MENU = auto()
     PUBLISHING = auto()
+    # Part 4 — /connect blogger 흐름에서 사용자가 OAuth 코드를 붙여넣을 때까지 대기.
+    CONNECT_WAITING_CODE = auto()
