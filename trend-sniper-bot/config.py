@@ -33,7 +33,8 @@ INSTAGRAM_ACCESS_TOKEN = os.getenv("INSTAGRAM_ACCESS_TOKEN", "")
 INSTAGRAM_BUSINESS_ID = os.getenv("INSTAGRAM_BUSINESS_ID", "")
 
 BLOGGER_CLIENT_SECRETS = os.getenv("BLOGGER_CLIENT_SECRETS", "./secrets/blogger_client.json")
-BLOGGER_BLOG_ID = os.getenv("BLOGGER_BLOG_ID", "")
+# 부모 .env / 옛 스크립트와의 호환을 위해 BLOG_ID 도 함께 인식.
+BLOGGER_BLOG_ID = os.getenv("BLOGGER_BLOG_ID") or os.getenv("BLOG_ID", "")
 
 # ===== System =====
 BASE_DIR = Path(__file__).resolve().parent
