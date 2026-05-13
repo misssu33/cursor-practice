@@ -4,6 +4,7 @@ from handlers import (
     channel_handler, instagram_image_handler,
     publish_handler, connect_handler,
     resume_handler, history_handler, export_handler,
+    timing_handler,
 )
 
 __all__ = [
@@ -11,4 +12,5 @@ __all__ = [
     "channel_handler", "instagram_image_handler",
     "publish_handler", "connect_handler",
     "resume_handler", "history_handler", "export_handler",
+    "timing_handler",
 ]

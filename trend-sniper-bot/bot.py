@@ -24,6 +24,7 @@ from handlers import (
     channel_handler, instagram_image_handler,
     publish_handler, connect_handler,
     resume_handler, history_handler, export_handler,
+    timing_handler,
 )
 
 logger = get_logger(__name__)
@@ -218,11 +219,12 @@ def build_app() -> Application:
     app.add_handler(CommandHandler("schedule", publish_handler.cmd_schedule))
     app.add_handler(CallbackQueryHandler(publish_handler.on_pubdone, pattern=r"^pubdone:"))
 
-    # /resume /history /export
+    # /resume /history /export /timing
     app.add_handler(CommandHandler("resume", resume_handler.cmd_resume))
     app.add_handler(CallbackQueryHandler(resume_handler.on_resume_select, pattern=r"^resume:"))
     app.add_handler(CommandHandler("history", history_handler.cmd_history))
     app.add_handler(CommandHandler("export", export_handler.cmd_export))
+    app.add_handler(CommandHandler("timing", timing_handler.cmd_timing))
 
     # 텍스트 라우터 (수동 발행 URL 입력 등)
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, text_router))

@@ -16,26 +16,31 @@ WELCOME = (
     "• /help — 도움말 / /cancel — 진행 취소"
 )
 
-HELP = (
-    "*명령어 안내*\n\n"
-    "📥 입력\n"
-    "• /new — 인테이크 양식 발송\n"
-    "• /core — 코어시트 양식 발송\n"
-    "• /fc_yes /fc_no — 팩트체크 진행/건너뛰기\n\n"
-    "✍️ 채널 작성\n"
-    "• /ch_linkedin /ch_naver /ch_adsense /ch_instagram /ch_threads\n"
-    "• /ch_done — 작성 마무리\n"
-    "• /ig_done /ig_cancel — 인스타 이미지 업로드 마무리\n\n"
-    "🚀 발행\n"
-    "• /publish — ready 상태 채널 즉시 발행 (auto/semi/manual 자동 분기)\n"
-    "• /schedule — 발행시점 5분 전 알림 + 정시 자동 발행 등록\n"
-    "• /connect <provider> — Blogger(OAuth) / Threads / Instagram 토큰 연결\n\n"
-    "🗂 관리\n"
-    "• /history — 최근 20개 프로젝트 발행 통계\n"
-    "• /resume — 중단된 프로젝트 이어하기\n"
-    "• /export [project_id] — 채널별 파일 다운로드\n\n"
-    "🛑 /cancel — 진행 중인 대화 취소"
-)
+HELP = """📖 *명령어 안내*
+
+📥 *입력*
+• /new — 인테이크 양식 발송
+• /core — 코어시트 양식 발송
+• /fc\\_yes /fc\\_no — 팩트체크 진행/건너뛰기
+
+✍️ *채널 작성*
+• /ch\\_linkedin /ch\\_naver /ch\\_adsense /ch\\_instagram /ch\\_threads
+• /ch\\_done — 작성 마무리
+• /ig\\_done /ig\\_cancel — 인스타 이미지 업로드 마무리
+
+🚀 *발행*
+• /publish — ready 상태 채널 즉시 발행 (auto/semi/manual 자동 분기)
+• /schedule — 발행시점 5분 전 알림 + 정시 자동 발행 등록
+• /connect <provider> — Blogger(OAuth) / Threads / Instagram 토큰 연결
+
+📂 *관리*
+• /history — 최근 20개 프로젝트 발행 통계
+• /resume — 중단된 프로젝트 이어하기
+• /export <project\\_id> — 채널별 파일 다운로드
+• /timing [채널] — 최적 업로드 타이밍 가이드
+
+🔴 /cancel — 진행 중인 대화 취소
+"""
 
 CANCEL = "🛑 진행 중인 작업을 취소했습니다."
 
